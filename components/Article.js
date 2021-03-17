@@ -114,3 +114,57 @@ const data = [
   Step 5: Try adding new article object to the data array. Make sure it is in the same format as the others.
   Refresh the page to see the new article.
 */
+const articles = document.querySelector('.articles')
+function articleMaker({title, date, firstParagraph, secondParagraph, thirdParagraph}) {
+  // createing elements STEP 1
+  const article = document.createElement('div')
+  const titleA = document.createElement('h2')
+  const dateA = document.createElement('p')
+  const firstParh = document.createElement('p')
+  const secondParh = document.createElement('p')
+  const thirdParh = document.createElement('p')
+  const expandBut = document.createElement('span')
+// structure
+article.appendChild(titleA)
+article.appendChild(dateA)
+article.appendChild(firstParh)
+article.appendChild(secondParh)
+article.appendChild(thirdParh)
+article.appendChild(expandBut)
+// adding classes
+article.classList.add('article')
+dateA.classList.add('date')
+expandBut.classList.add('expandButton')
+// Text content
+// const {title, date, firstParagraph, secondParagraph, thirdParagraph} = data
+titleA.textContent = title
+dateA.textContent = date
+firstParh.textContent = firstParagraph
+secondParh.textContent = secondParagraph
+thirdParh.textContent = thirdParagraph
+expandBut.textContent = '+'
+// event listener STEP 2
+expandBut.addEventListener('click', event =>{
+  article.classList.toggle('article-open')
+})
+// return STEP 3
+return article
+}
+// forEach STEP 4
+data.forEach(artObj =>{
+  const newArticle = articleMaker(artObj)
+  articles.appendChild(newArticle)
+})
+
+const other = articleMaker({
+  title: 'The Moms World',
+  date: 'Jan 1st, 2019',
+  firstParagraph: `5 am it's time to wake up. BAMG BAM CRASH SPLASH. GOO RAWRRRRRRRR  `,
+
+  secondParagraph: `11 am lunch foood oooooooooodddd... I'm hungryyyyyy Waterrrr now now Food food peanutbutter
+  iimmm hungry nowww feed meee.`,
+
+  thirdParagraph: `8pm Bed time bush teeth, change, bath, hug and kisses. "I dont wanna go to bed" I love you
+  lots. xoxoxo ..............."Finally Quiet."`
+})
+articles.appendChild(other)
